@@ -1,0 +1,19 @@
+📌 Requirements (Initial Phase)
+🔧 System Requirements
+
+Node.js (v18+ recommended)
+
+npm or yarn
+
+Modern browser (Chrome / Edge)
+
+
+📦 Frontend Dependencies
+
+react
+
+react-dom
+
+axios (later use)
+
+tailwindcss or css modules
