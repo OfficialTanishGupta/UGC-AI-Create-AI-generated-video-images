@@ -12,7 +12,7 @@ export default function Navbar() {
     { name: "Home", href: "/#" },
     { name: "Create", href: "/generate" },
     { name: "Community", href: "/community" },
-    { name: "Plans", href: "/#plans" },
+    { name: "Plans", href: "/plans" },
   ];
 
   return (
@@ -31,7 +31,8 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
           {navLinks.map((link) => (
             <Link
-              href={link.href}
+              onClick={() => scrollTo(0, 0)}
+              to={link.href}
               key={link.name}
               className="hover:text-white transition"
             >

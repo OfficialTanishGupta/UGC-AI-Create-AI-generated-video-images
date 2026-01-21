@@ -1,65 +1,59 @@
-## 🎥 AI Short Video Ads Generator (Frontend – Phase 1)
+### 🎥 UGC AI – Create AI Generated Video Images
 
-### 🚀 Project Overview
+## 🚀 Project Overview
 
-This project is a Full-Stack AI SaaS Application that generates short promotional video advertisements using AI.
-Users can provide product details (text, image, or idea), and the system will generate AI-powered short video ads suitable for marketing on platforms like Instagram, YouTube Shorts, and Facebook Ads.
+UGC AI is a Full-Stack AI SaaS application that enables users to generate AI-powered short promotional videos and ad creatives using product images, model images, and text prompts.
 
-## 🎯 Goal of This Phase (Phase 1 – Frontend)
+The platform is designed for:
 
-In this initial phase, the focus is on:
+Marketing teams
 
-Designing and building a professional frontend UI
+Content creators
 
-Creating user flows for AI video generation
+Startups & brands
 
-Preparing the frontend to connect with backend & AI services later
+Social media ads (Instagram, YouTube Shorts, Reels)
 
-This phase ensures the project is resume-ready from Day 1.
+## 🎯 Current Status
 
-### 🧩 Features (Planned)
+## 🚧 Frontend Phase 1 – In Progress
 
-## ✅ Phase 1 – Frontend (Current)
+The project is being developed step-by-step, with each milestone committed to GitHub to demonstrate real-world development practices.
 
-Landing page with product explanation
+## ✨ Features Implemented (So Far)
 
-Input form for:
+# ✅ Frontend – Phase 1
 
-Product name
+Modern SaaS-style UI
 
-Product description
+Navigation bar with branding (UGC.AI)
 
-Target audience
+Dedicated Generate page
 
-Ad style (modern, cinematic, minimal, etc.)
+Drag-and-drop image upload
 
-Image upload UI
+Product image upload
 
-Generate Video button (mock / placeholder)
+Model/person image upload
 
-Loading & progress UI
+Visual preview of uploaded images
 
-Responsive design (desktop + mobile)
+Responsive & clean dark-themed UI
 
-## 🔜 Phase 2 – Backend & AI
+Prepared UI foundation for AI processing in next phases
 
-Express + Node backend
+## 🖼️ Frontend Preview (Current Progress)
 
-Gemini AI integration
+Drag-and-drop interface for uploading **product** and **model** images.  
+This UI will be used in upcoming phases for AI-powered video generation.
 
-Video generation pipeline
+![Frontend Drag and Drop UI](./screenshots/frontend-drag-drop.png)
 
-PostgreSQL database
+## 🛠️ Tech Stack
 
-User authentication
+Frontend
 
-Deployment (Netlify + Render/Vercel)
-
-## 🖥️ Tech Stack
-
-# Frontend (Phase 1)
-
-React.js
+React (Vite)
 
 JavaScript (ES6+)
 
@@ -67,9 +61,9 @@ HTML5
 
 CSS3 / Tailwind CSS
 
-Axios (for API calls – later)
+Drag & Drop APIs
 
-# Backend (Upcoming)
+Backend (Upcoming)
 
 Node.js
 
@@ -77,68 +71,53 @@ Express.js
 
 PostgreSQL
 
-Gemini API
+Gemini AI API
 
-Cloud storage for videos
+## 📁 Project Structure
 
-## 📁 Project Structure (Initial)
-
-ai-short-video-ads-generator/
+UGC-AI-Create-AI-generated-video-images/
 │
 ├── frontend/
 │ ├── src/
 │ │ ├── components/
 │ │ ├── pages/
 │ │ ├── assets/
-│ │ ├── App.jsx
-│ │ └── main.jsx
-│ └── package.json
+│ │ └── App.jsx
 │
-├── backend/ (coming soon)
+├── backend/ # coming soon
+│
+├── screenshots/
+│ └── frontend-drag-drop.png
 │
 ├── .gitignore
 └── README.md
 
-## 🛠️ How to Run (Frontend – Phase 1)
+## 🎯 Learning Objectives
 
-clone the repository
+Build real-world SaaS UI
 
-# go to frontend folder
+Implement drag-and-drop UX
 
-cd frontend
+Prepare frontend for AI pipelines
 
-# install dependencies
+Follow professional GitHub workflow
 
-npm install
+Showcase phased development to recruiters
 
-# start development server
+## 🚀 Next Planned Features
 
-npm run dev
+Backend API integration
 
-## 🧠 Learning Objectives
+AI prompt handling
 
-Build a real-world SaaS frontend
+Image-to-video generation
 
-Understand AI product UX
+User authentication
 
-Prepare frontend for AI & backend integration
-
-Follow industry-level GitHub practices
-
-Make the project interviewer-friendly
-
-## 📸 Screenshots & Demo
-
-🚧 Coming soon (after frontend UI completion)
-
-## 🌐 Deployment
-
-Frontend deployment planned using Netlify / Vercel
-
-Backend deployment planned using Render / Railway
+Cloud deployment (Netlify + Render)
 
 ## 👨‍💻 Author
 
 Tanish Gupta
 AI | Full Stack | SaaS | Machine Learning
-📌 Passionate about building AI-powered real-world applications
+📌 Building AI-powered products for real-world use cases
