@@ -22,32 +22,20 @@ The project is being developed step-by-step, with each milestone committed to Gi
 
 ## ✨ Features Implemented (So Far)
 
-# ✅ Frontend – Phase 1
+## 🖼️ Frontend Preview – Phase 2
 
-Modern SaaS-style UI
+Enhanced generator interface with structured input fields and layout improvements.
 
-Navigation bar with branding (UGC.AI)
+### Newly Added in Phase 2
 
-Dedicated Generate page
+- Project name input
+- Product name input
+- Product description (optional)
+- Aspect ratio selection (9:16 / 16:9)
+- User prompt input (optional)
+- Improved alignment between upload zones and form inputs
 
-Drag-and-drop image upload
-
-Product image upload
-
-Model/person image upload
-
-Visual preview of uploaded images
-
-Responsive & clean dark-themed UI
-
-Prepared UI foundation for AI processing in next phases
-
-## 🖼️ Frontend Preview (Current Progress)
-
-Drag-and-drop interface for uploading **product** and **model** images.  
-This UI will be used in upcoming phases for AI-powered video generation.
-
-![Frontend Drag and Drop UI](./screenshots/frontend-drag-drop.png)
+![Generator UI Phase 2](./screenshots/frontend-generator-phase-2.png)
 
 ## 🛠️ Tech Stack
 
