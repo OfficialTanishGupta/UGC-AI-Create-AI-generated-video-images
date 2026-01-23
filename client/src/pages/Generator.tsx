@@ -1,7 +1,13 @@
 import { useState } from "react";
 import Title from "../components/Title";
 import UploadZone from "../components/UploadZone";
-import { RectangleHorizontalIcon, RectangleVerticalIcon } from "lucide-react";
+import {
+  Loader2Icon,
+  RectangleHorizontalIcon,
+  RectangleVerticalIcon,
+  Wand2Icon,
+} from "lucide-react";
+import { PrimaryButton } from "../components/Buttons";
 
 const Generator = () => {
   const [name, setName] = useState("");
@@ -56,7 +62,7 @@ const Generator = () => {
           {/* right col */}
           <div className="w-full space-y-6">
             {/* Project Name */}
-            <div>
+            <div className="mb-4 text-gray-300">
               <label htmlFor="name" className="block text-sm mb-4">
                 Project Name
               </label>
@@ -154,6 +160,25 @@ const Generator = () => {
               />
             </div>
           </div>
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <PrimaryButton
+            disabled={isGenerating}
+            className="px-10 py-3 rounded-md disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {isGenerating ? (
+              <>
+                <Loader2Icon className="size-5 animate-spin" />
+                <span className="ml-2">Generating...</span>
+              </>
+            ) : (
+              <>
+                <Wand2Icon className="size-5" />
+                <span className="ml-2">Generate Image</span>
+              </>
+            )}
+          </PrimaryButton>
         </div>
       </form>
     </div>
