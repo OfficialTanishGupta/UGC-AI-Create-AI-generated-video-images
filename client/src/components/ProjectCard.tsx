@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import type { Project } from "../types";
 import {
   EllipsisIcon,
+  ImageIcon,
   Loader2Icon,
   PlaySquareIcon,
   Share2Icon,
@@ -12,33 +13,26 @@ import { useState } from "react";
 const ProjectCard = ({
   gen,
   forCommunity = false,
+  setGenerations,
 }: {
   gen: Project;
   forCommunity?: boolean;
+  setGenerations?: (
+    value: Project[] | ((prev: Project[]) => Project[]),
+  ) => void;
 }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    const confirm = Window.confirm(
+    const confirm = window.confirm(
       "Are you sure, you want to delete this project?",
     );
     if (!confirm) return;
     console.log(id);
   };
-
   const togglePublish = async (projectId: string) => {
     console.log(projectId);
-  };
-
-  const handleShare = () => {
-    if (!navigator.share) return;
-
-    navigator.share({
-      url: gen.generatedVideo || gen.generatedImage,
-      title: gen.productName,
-      text: gen.productDescription,
-    });
   };
 
   return (
@@ -87,56 +81,138 @@ const ProjectCard = ({
             </div>
           )}
 
+          {/* status badge */}
+          <div className="absolute left-3 top-3 flex gap-2">
+            {gen.isGenerating && (
+              <span className="text-xs px-2 py-1 bg-yellow-600/30 rounded-full">
+                Generating
+              </span>
+            )}
+            {gen.isPublished && (
+              <span className="text-xs px-2 py-1 bg-green-600/30 rounded-full">
+                Published
+              </span>
+            )}
+          </div>
+
           {/* action menu */}
           {!forCommunity && (
             <div
-              onMouseEnter={() => setMenuOpen(true)}
-              onMouseLeave={() => setMenuOpen(false)}
+              onMouseDownCapture={{}=>{setMenuOpen(true)}}
               className="absolute right-3 top-3 sm:opacity-0 
-              group-hover:opacity-100 transition"
+              group-hover:opacity-100 transition flex items-center gap-2"
             >
-              <EllipsisIcon className="bg-black/10 rounded-full p-1 size-7" />
-
-              <ul
-                className={`absolute right-0 mt-2 w-40 text-xs
-                ${menuOpen ? "block" : "hidden"}
-                overflow-hidden bg-black/50 backdrop-blur
-                border border-gray-500/50 rounded-lg shadow-md`}
-              >
-                {gen.generatedVideo && (
-                  <li>
+              <div className="absolute top-3 right-3">
+                <EllipsisIcon className="ml-auto bg-black/10 rounded-full p-1 size-7" />
+              </div>
+              <div className="flex flex-col items-end w-32 text-sm">
+                <ul
+                  className={`text-xs ${menuOpen ? "block" : "hidden"}
+                overflow-hidden right-0 peer-focus:block
+                w-40 bg-black/50 backdrop-blur text-white 
+                border border-gray-500/50 rounded-lg shadow-md mt-2 py-1 z-10`}
+                >
+                  {gen.generatedImage && (
                     <a
-                      href={gen.generatedVideo}
+                      href="#"
                       download
-                      className="flex gap-2 items-center px-4 py-2 hover:bg-black/10"
+                      className="flex gap-2 items-center px-4 py-2
+                hover:bg-black/10 cursor-pointer"
+                    >
+                      <ImageIcon size={14} />
+                      Download Image
+                    </a>
+                  )}
+
+                  {gen.generatedVideo && (
+                    <a
+                      href="#"
+                      download
+                      className="flex gap-2 items-center px-4 py-2
+                hover:bg-black/10 cursor-pointer"
                     >
                       <PlaySquareIcon size={14} />
                       Download Video
                     </a>
-                  </li>
-                )}
+                  )}
 
-                {(gen.generatedVideo || gen.generatedImage) && (
-                  <li>
+                  {(gen.generatedVideo || gen.generatedImage) && (
                     <button
-                      onClick={handleShare}
-                      className="w-full flex gap-2 items-center px-4 py-2 hover:bg-black/10"
+                      onClick={() =>
+                        navigator.share({
+                          url: gen.generatedVideo || gen.generatedImage,
+                          title: gen.productName,
+                          text: gen.productDescription,
+                        })
+                      }
+                      className="w-full flex gap-2 items-center px-4 py-2
+                     hover:bg-black/10 cursor-pointer"
                     >
                       <Share2Icon size={14} /> Share
                     </button>
-                  </li>
-                )}
+                  )}
 
-                <li>
                   <button
                     onClick={() => handleDelete(gen.id)}
-                    className="w-full flex gap-2 items-center px-4 py-2 hover:bg-red-950/10"
+                    className="w-full
+                 flex gap-2 items-center px-4 py-2 hover:bg-red-950/10
+                 text-red-400 cursor-pointer"
                   >
                     <Trash2Icon size={14} /> Delete
                   </button>
-                </li>
-              </ul>
+                </ul>
+              </div>
+              {/* </div> */}
             </div>
+          )}
+
+          {/* source images */}
+          <div className="absolute right-3 bottom-3 flex">
+            <img
+              src={gen.uploadedImages[0]}
+              alt="product"
+              className="w-16 h-16 object-cover rounded-full animate-float"
+            />
+            <img
+              src={gen.uploadedImages[1]}
+              alt="model"
+              className="w-16 h-16 object-cover rounded-full animate-float -ml-8"
+              style={{ animationDelay: "3s" }}
+            />
+          </div>
+        </div>
+
+        {/* Details */}
+        <div className="p-4">
+          <div className="flex justify-between gap-4">
+            <div>
+              <h3 className="font-medium text-lg">{gen.productName}</h3>
+              <p className="text-sm text-gray-400">
+                Created: {new Date(gen.createdAt!).toLocaleString()}
+              </p>
+              {gen.updatedAt && (
+                <p className="text-xs text-gray-500">
+                  Updated: {new Date(gen.updatedAt).toLocaleString()}
+                </p>
+              )}
+            </div>
+
+            <span className="text-xs px-2 py-1 bg-white/5 rounded-full">
+              Aspect: {gen.aspectRatio}
+            </span>
+          </div>
+
+          {gen.productDescription && (
+            <div className="mt-3">
+              <p className="text-xs text-gray-400 mb-1">Description</p>
+              <div className="text-sm text-gray-300 bg-white/3 p-2 rounded-md break-words">
+                {gen.productDescription}
+              </div>
+            </div>
+          )}
+
+          {gen.userPrompt && (
+            <div className="mt-3 text-xs text-gray-300">{gen.userPrompt}</div>
           )}
         </div>
       </div>
