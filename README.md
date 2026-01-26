@@ -1,163 +1,136 @@
-# 🎥 UGC AI – Create AI Generated Video & Images
+# 🎬 UGC AI — Create AI-Generated Video & Images
 
-## 🚀 Project Overview
+UGC AI is a modern, full-stack AI platform that allows users to generate high-quality **AI images and videos** for ads, marketing, and social media — all through a clean, production-ready UI.
 
-**UGC AI** is a Full-Stack AI SaaS platform that enables users to generate **AI-powered short promotional videos and ad creatives** using product images, model images, and natural-language prompts.
-
-The platform is being built step-by-step with real-world SaaS architecture, scalable UI components, and recruiter-friendly GitHub practices.
-
-### Built for:
-
-- 📢 Marketing teams
-- 🎨 Content creators
-- 🚀 Startups & brands
-- 📱 Social media ads (Instagram Reels, YouTube Shorts, TikTok)
+Built with a SaaS mindset: **authentication, plans, credits, community sharing**, and scalable architecture.
 
 ---
 
-## 🎯 Current Status
+## 🚀 Features
 
-### 🚧 Frontend Phase – In Progress
-
-Frontend development is actively ongoing.  
-Each feature is implemented as a milestone and committed individually to reflect **real-world SaaS development workflow**.
-
----
-
-## ✨ Features Implemented So Far
-
----
-
-## 🖼️ Generator UI – Phase 2
-
-Structured input-based generator interface.
-
-**Features**
-
-- Project name input
-- Product name input
-- Product description (optional)
-- Aspect ratio selection (9:16 / 16:9)
-- User prompt input (optional)
-- Clean layout with upload zones
-- Responsive UI
-
-![Generator UI Phase 2](./screenshots/frontend-generator-phase-2.png)
+- 🤖 AI-powered Image & Video Generation
+- 🔐 Secure Authentication (Sign In / Sign Up) using **Clerk**
+- 🧾 Credit-based system (Free & Paid plans)
+- 💳 Pricing Plans (Free, Pro, Premium)
+- 🌍 Community page to showcase generations
+- 🖼️ Generation Result page (view & download outputs)
+- 🎨 Modern UI with Tailwind & React
+- ⚡ Fast & responsive frontend
 
 ---
 
-## 🎬 Generation Result Page (NEW)
+## 🔐 Authentication (Clerk)
 
-Final output preview page after AI generation.
+Users can securely authenticate using:
 
-**Features**
+- Google OAuth
+- Email & Password
 
-- Generated image/video preview
-- Hover-based video playback
-- Generation status badges
-- Creation & update timestamps
-- Product metadata display
-- Professional result-card layout
+### Sign In
 
-![Generation Result Page](./screenshots/generation-result-page.png)
+![Sign In Page](./screenshots/signin.png)
 
----
+### Sign Up
 
-## 🌍 Community Page
+![Sign Up Page](./screenshots/signup.png)
 
-A public feed showcasing AI-generated content.
-
-**Features**
-
-- Masonry-style grid
-- Image & video previews
-- Community-focused browsing UI
-- Scalable for likes, shares & comments
-
-![Community Page](./screenshots/community-page.png)
+Authentication is handled using **Clerk Authentication**, ensuring security, scalability, and easy session management.
 
 ---
 
-## 🧑‍💻 My Generations Page
+## 🎨 AI Generation Flow
 
-Personal dashboard for managing generated content.
+Users can:
 
-**Features**
+1. Provide product details & prompts
+2. Generate AI images or videos
+3. View results on the **Generation Result page**
+4. Download or share outputs
 
-- User-specific content listing
-- Empty-state UX
-- Call-to-action to create new generations
-- Designed for future controls (delete, publish, share)
+### Generation Result Page
 
-![My Generations Page](./screenshots/my-generations-page.png)
+![Generation Result](./screenshots/generation-result.png)
+
+---
+
+## 💳 Pricing Plans & Credits
+
+UGC AI follows a **credit-based model**.
+
+### Available Plans
+
+![Pricing Plans](./screenshots/plans.png)
+
+| Plan    | Price       | Credits | Features                         |
+| ------- | ----------- | ------- | -------------------------------- |
+| Free    | $0          | 20      | Standard quality, watermark-free |
+| Pro     | $1.08/month | 80      | HD quality, video generation     |
+| Premium | $1.62/month | 240     | FHD quality, fastest generation  |
+
+Users can:
+
+- Use **free credits**
+- Upgrade to **paid plans**
+- Generate content based on available credits
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
+**Frontend**
 
-- React (Vite)
-- TypeScript
+- React + TypeScript
 - Tailwind CSS
+- Vite
 - Lucide Icons
-- Framer Motion
-- Responsive UI Design
 
-### Backend (Upcoming)
+**Auth & Payments**
 
-- Node.js
-- Express.js
-- PostgreSQL
-- AI APIs (Gemini / Image-to-Video models)
-- Authentication & Authorization
+- Clerk Authentication
+- Credit-based access system
+
+**Backend / AI (In Progress / Integrated)**
+
+- AI Image & Video generation APIs
+- Cloud-ready architecture
 
 ---
 
 ## 📁 Project Structure
 
-UGC-AI-Create-AI-generated-video-images/
-│
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── assets/
-│ │ ├── types/
-│ │ └── App.tsx
-│
-├── backend/ # Coming soon
-│
-├── screenshots/
-│ ├── frontend-generator-phase-2.png
-│ ├── generation-result-page.png
-│ ├── community-page.png
-│ └── my-generations-page.png
-│
-├── .gitignore
-└── README.md
+src/
+├─ components/
+├─ pages/
+│ ├─ Home
+│ ├─ Create
+│ ├─ Community
+│ ├─ Plans
+│ ├─ Generation Result
+├─ auth/
+├─ types/
+├─ assets/
+└─ utils/
 
-## 🎯 Learning Objectives
+## 📌 Current Status
 
-- Build a real-world SaaS frontend
-- Design AI-ready generation workflows
-- Implement clean UI state handling
-- Practice professional GitHub commits
-- Create recruiter-visible milestones
+✅ Authentication (Sign In / Sign Up)  
+✅ Pricing Plans  
+✅ Credit system (Free & Paid)  
+✅ Generation Result Page  
+🚧 AI backend optimization  
+🚧 Deployment
 
-## 🚀 Next Planned Features
-
-- Backend API integration
-- AI prompt execution
-- Image-to-video generation
-- Publish to community
-- User authentication
-- Cloud deployment (Netlify + Render)
+---
 
 ## 👨‍💻 Author
 
 **Tanish Gupta**  
-AI | Full Stack | SaaS | Machine Learning
+AI | Full-Stack | Product-Focused Developer
 
-📌 Building AI-powered products for real-world use cases  
-🔗 GitHub: https://github.com/OfficialTanishGupta
+If you like this project ⭐ star the repo — it really helps!
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
