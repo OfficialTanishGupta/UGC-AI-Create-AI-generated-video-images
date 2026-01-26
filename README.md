@@ -49,7 +49,7 @@ Users can:
 
 ### Generation Result Page
 
-![Generation Result](./screenshots/generation-result.png)
+![Generation Result](./screenshots/generation-result-page.png)
 
 ---
 
