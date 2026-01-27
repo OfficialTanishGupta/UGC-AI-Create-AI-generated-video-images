@@ -1,136 +1,95 @@
-# 🎬 UGC AI — Create AI-Generated Video & Images
+# 🎬 UGC AI — Backend (In Progress)
 
-UGC AI is a modern, full-stack AI platform that allows users to generate high-quality **AI images and videos** for ads, marketing, and social media — all through a clean, production-ready UI.
+This repository contains the **backend architecture** for **UGC AI**, a scalable AI-powered platform for generating images and videos with authentication, credits, and plans.
 
-Built with a SaaS mindset: **authentication, plans, credits, community sharing**, and scalable architecture.
-
----
-
-## 🚀 Features
-
-- 🤖 AI-powered Image & Video Generation
-- 🔐 Secure Authentication (Sign In / Sign Up) using **Clerk**
-- 🧾 Credit-based system (Free & Paid plans)
-- 💳 Pricing Plans (Free, Pro, Premium)
-- 🌍 Community page to showcase generations
-- 🖼️ Generation Result page (view & download outputs)
-- 🎨 Modern UI with Tailwind & React
-- ⚡ Fast & responsive frontend
+The backend is being built with **production-grade tools** focusing on performance, security, and scalability.
 
 ---
 
-## 🔐 Authentication (Clerk)
+## 🚀 Backend Tech Stack
 
-Users can securely authenticate using:
-
-- Google OAuth
-- Email & Password
-
-### Sign In
-
-![Sign In Page](./screenshots/signin.png)
-
-### Sign Up
-
-![Sign Up Page](./screenshots/signup.png)
-
-Authentication is handled using **Clerk Authentication**, ensuring security, scalability, and easy session management.
+- **Node.js + Express**
+- **TypeScript**
+- **Neon (Serverless PostgreSQL)**
+- **Prisma ORM**
+- **Clerk Authentication**
+- **Cloudinary (Media Storage)**
+- **Sentry (Error Tracking)**
+- **Hostinger VPS (Deployment)**
 
 ---
 
-## 🎨 AI Generation Flow
+## 🧱 Backend Architecture Roadmap
 
-Users can:
+Below is the planned backend structure and implementation flow:
 
-1. Provide product details & prompts
-2. Generate AI images or videos
-3. View results on the **Generation Result page**
-4. Download or share outputs
+![Backend Roadmap](./screenshots/backend-roadmap.png)
 
-### Generation Result Page
+### Planned Modules
 
-![Generation Result](./screenshots/generation-result-page.png)
-
----
-
-## 💳 Pricing Plans & Credits
-
-UGC AI follows a **credit-based model**.
-
-### Available Plans
-
-![Pricing Plans](./screenshots/plans.png)
-
-| Plan    | Price       | Credits | Features                         |
-| ------- | ----------- | ------- | -------------------------------- |
-| Free    | $0          | 20      | Standard quality, watermark-free |
-| Pro     | $1.08/month | 80      | HD quality, video generation     |
-| Premium | $1.62/month | 240     | FHD quality, fastest generation  |
-
-Users can:
-
-- Use **free credits**
-- Upgrade to **paid plans**
-- Generate content based on available credits
+1. Backend server using **Express & TypeScript**
+2. **Neon Database** (Serverless PostgreSQL)
+3. **Prisma ORM** for database access
+4. **Clerk Authentication & Webhook Controller**
+5. Error tracking using **Sentry**
+6. User Controllers
+7. Image Generation Controller
+8. Video Generation Controller
+9. Media storage using **Cloudinary**
+10. Deployment using **Hostinger VPS**
 
 ---
 
-## 🛠️ Tech Stack
+## 🔐 Authentication
 
-**Frontend**
-
-- React + TypeScript
-- Tailwind CSS
-- Vite
-- Lucide Icons
-
-**Auth & Payments**
-
-- Clerk Authentication
-- Credit-based access system
-
-**Backend / AI (In Progress / Integrated)**
-
-- AI Image & Video generation APIs
-- Cloud-ready architecture
+- Secure authentication handled by **Clerk**
+- Webhooks to sync users with the database
+- Role & credit-based access control
 
 ---
 
-## 📁 Project Structure
+## 🗄️ Database
 
-src/
-├─ components/
-├─ pages/
-│ ├─ Home
-│ ├─ Create
-│ ├─ Community
-│ ├─ Plans
-│ ├─ Generation Result
-├─ auth/
-├─ types/
-├─ assets/
-└─ utils/
+- **Neon** for scalable PostgreSQL
+- **Prisma ORM** for:
+  - Type-safe queries
+  - Easy migrations
+  - Clean schema management
+
+---
+
+## 📦 Media Storage
+
+- Images & videos stored securely using **Cloudinary**
+- Optimized delivery with CDN support
+
+---
+
+## 📊 Error Monitoring
+
+- **Sentry** integrated for:
+  - Runtime error tracking
+  - API crash monitoring
+  - Production debugging
+
+---
 
 ## 📌 Current Status
 
-✅ Authentication (Sign In / Sign Up)  
-✅ Pricing Plans  
-✅ Credit system (Free & Paid)  
-✅ Generation Result Page  
-🚧 AI backend optimization  
-🚧 Deployment
+✅ Backend planning completed  
+🚧 Express + TypeScript server setup  
+🚧 Prisma + Neon integration  
+🚧 Auth & generation controllers
 
 ---
 
 ## 👨‍💻 Author
 
 **Tanish Gupta**  
-AI | Full-Stack | Product-Focused Developer
-
-If you like this project ⭐ star the repo — it really helps!
+Full-Stack AI Developer | SaaS Builder
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+MIT License
