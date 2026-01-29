@@ -13,6 +13,7 @@ export const getUserCredits = async (req: Request, res: Response) => {
     const user = await prisma.user.findUnique({
       where: { id: userId },
     });
+
     res.json({ credits: user?.credits });
   } catch (error: any) {
     Sentry.captureException(error);
@@ -20,14 +21,16 @@ export const getUserCredits = async (req: Request, res: Response) => {
   }
 };
 
-// const get all user projects
+// Get all user projects
 export const getAllProjects = async (req: Request, res: Response) => {
   try {
     const { userId } = req.auth();
+
     const projects = await prisma.project.findMany({
       where: { userId },
       orderBy: { createdAt: "desc" },
     });
+
     res.json({ projects });
   } catch (error: any) {
     Sentry.captureException(error);
@@ -35,19 +38,25 @@ export const getAllProjects = async (req: Request, res: Response) => {
   }
 };
 
-// get project by id
-// Get User Credits
+// Get project by id
 export const getProjectById = async (req: Request, res: Response) => {
   try {
     const { userId } = req.auth();
-    const { projectId } = req.params;
+    const projectId = req.params.projectId as string;
 
     const project = await prisma.project.findUnique({
-      where: { id: projectId, userId },
+      where: {
+        id_userId: {
+          id: projectId,
+          userId,
+        },
+      },
     });
+
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }
+
     res.json({ project });
   } catch (error: any) {
     Sentry.captureException(error);
@@ -55,26 +64,36 @@ export const getProjectById = async (req: Request, res: Response) => {
   }
 };
 
-// publish / unpublish project
-// Get User Credits
+// Publish / unpublish project
 export const toggleProjectPublic = async (req: Request, res: Response) => {
   try {
     const { userId } = req.auth();
-    const { projectId } = req.params;
+    const projectId = req.params.projectId as string;
 
     const project = await prisma.project.findUnique({
-      where: { id: projectId, userId },
+      where: {
+        id_userId: {
+          id: projectId,
+          userId,
+        },
+      },
     });
+
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }
 
-    if (!project?.generatedImage && !project?.generatedVideo) {
-      return res.status(404).json({ meesage: "image or video not generated" });
+    if (!project.generatedImage && !project.generatedVideo) {
+      return res.status(400).json({ message: "Image or video not generated" });
     }
 
     await prisma.project.update({
-      where: { id: projectId },
+      where: {
+        id_userId: {
+          id: projectId,
+          userId,
+        },
+      },
       data: { isPublished: !project.isPublished },
     });
 
