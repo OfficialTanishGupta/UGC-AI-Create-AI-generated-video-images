@@ -343,11 +343,17 @@ export const getAllPublishedProjects = async (req: Request, res: Response) => {
 export const deleteProject = async (req: Request, res: Response) => {
   try {
     const { userId } = req.auth();
-    const { projectId } = req.params;
+    const projectId = req.body.projectId as string;
 
     const project = await prisma.project.findUnique({
-      where: { id: projectId, userId },
-    });
+  where: {
+    id_userId: {
+      id: projectId,
+      userId,
+    },
+  },
+  include: { user: true },
+});
 
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
