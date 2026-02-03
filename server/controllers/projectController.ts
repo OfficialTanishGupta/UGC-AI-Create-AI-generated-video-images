@@ -9,9 +9,9 @@ import {
 } from "@google/genai";
 import fs from "fs";
 import path from "path";
-import { config } from "process";
+// import { config } from "process";
 import ai from "../configs/ai.js";
-import { User } from "@clerk/express";
+// import { User } from "@clerk/express";
 import axios from "axios";
 import { resolve } from "dns";
 
@@ -346,14 +346,14 @@ export const deleteProject = async (req: Request, res: Response) => {
     const projectId = req.body.projectId as string;
 
     const project = await prisma.project.findUnique({
-  where: {
-    id_userId: {
-      id: projectId,
-      userId,
-    },
-  },
-  include: { user: true },
-});
+      where: {
+        id_userId: {
+          id: projectId,
+          userId,
+        },
+      },
+      include: { user: true },
+    });
 
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
