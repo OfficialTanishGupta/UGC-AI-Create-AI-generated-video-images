@@ -46,7 +46,7 @@ const clerkWebhooks = async (req: Request, res: Response) => {
         if (
           (data.charge_type === "recurring" ||
             data.charge_type === "checkout") &&
-          data.status == "paid"
+          data.status === "paid"
         ) {
           const credits = { pro: 80, premium: 240 };
           const clerkUserId = data?.payer?.user_id;
