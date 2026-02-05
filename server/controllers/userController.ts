@@ -46,10 +46,8 @@ export const getProjectById = async (req: Request, res: Response) => {
 
     const project = await prisma.project.findUnique({
       where: {
-        id_userId: {
-          id: projectId,
-          userId,
-        },
+        id: projectId,
+        userId,
       },
     });
 
@@ -72,10 +70,8 @@ export const toggleProjectPublic = async (req: Request, res: Response) => {
 
     const project = await prisma.project.findUnique({
       where: {
-        id_userId: {
-          id: projectId,
-          userId,
-        },
+        id: projectId,
+        userId,
       },
     });
 
@@ -89,10 +85,8 @@ export const toggleProjectPublic = async (req: Request, res: Response) => {
 
     await prisma.project.update({
       where: {
-        id_userId: {
-          id: projectId,
-          userId,
-        },
+        id: projectId,
+        userId,
       },
       data: { isPublished: !project.isPublished },
     });

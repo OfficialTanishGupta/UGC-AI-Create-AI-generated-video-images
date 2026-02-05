@@ -13,7 +13,7 @@ import path from "path";
 import ai from "../configs/ai.js";
 // import { User } from "@clerk/express";
 import axios from "axios";
-import { resolve } from "dns";
+// import { resolve } from "dns";
 
 const loadImage = (path: string, mimeType: string) => {
   return {
@@ -108,7 +108,7 @@ export const createProject = async (req: Request, res: Response) => {
           threshold: HarmBlockThreshold.OFF,
         },
         {
-          category: HarmCategory.HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT,
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
           threshold: HarmBlockThreshold.OFF,
         },
         {
@@ -119,8 +119,8 @@ export const createProject = async (req: Request, res: Response) => {
     };
 
     // image to base64 structure for ai model
-    const img1base64 = loadImage(images[0].path, images[0].mimeType);
-    const img2base64 = loadImage(images[1].path, images[1].mimeType);
+    const img1base64 = loadImage(images[0].path, images[0].mimetype);
+    const img2base64 = loadImage(images[1].path, images[1].mimetype);
 
     const prompt = {
       text: `Combine the person and product into a realistic
@@ -266,7 +266,7 @@ export const createVideo = async (req: Request, res: Response) => {
 
     while (!operation.done) {
       console.log("waiting for video generation to complete....");
-      await new Promise(() => setTimeout(resolve, 10000));
+      await new Promise((res) => setTimeout(res, 10000));
       operation = await ai.operations.getVideosOperation({
         operation: operation,
       });
@@ -345,19 +345,30 @@ export const deleteProject = async (req: Request, res: Response) => {
     const { userId } = req.auth();
     const projectId = req.body.projectId as string;
 
+    // const project = await prisma.project.findUnique({
+    //   where: {
+    //       id: projectId,
+    //       userId,
+    //   },
+    //   include: { user: true },
+    // });
+
     const project = await prisma.project.findUnique({
       where: {
-        id_userId: {
-          id: projectId,
-          userId,
-        },
+        id: projectId,
+        userId,
       },
-      include: { user: true },
     });
 
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }
+
+    await prisma.project.delete({
+      where: { id: projectId },
+    });
+
+    res.json({ message: "Project deleted" });
   } catch (error: any) {
     Sentry.captureException(error);
     res.status(500).json({ message: error.message });
