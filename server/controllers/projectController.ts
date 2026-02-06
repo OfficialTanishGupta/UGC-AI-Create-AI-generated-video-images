@@ -343,33 +343,36 @@ export const getAllPublishedProjects = async (req: Request, res: Response) => {
 export const deleteProject = async (req: Request, res: Response) => {
   try {
     const { userId } = req.auth();
-    const projectId = req.body.projectId as string;
 
-    // const project = await prisma.project.findUnique({
-    //   where: {
-    //       id: projectId,
-    //       userId,
-    //   },
-    //   include: { user: true },
-    // });
+    // Force the type to string to satisfy Prisma
+    const projectId = req.params.projectId as string;
+
+    if (!projectId) {
+      return res.status(400).json({ message: "Project ID is required" });
+    }
 
     const project = await prisma.project.findUnique({
       where: {
-        id: projectId,
-        userId,
+        id: projectId, // This was throwing the error 2322
+        userId: userId,
       },
     });
 
     if (!project) {
-      return res.status(404).json({ message: "Project not found" });
+      return res
+        .status(404)
+        .json({ message: "Project not found or unauthorized" });
     }
 
     await prisma.project.delete({
-      where: { id: projectId },
+      where: {
+        id: projectId, // This was also throwing error 2322
+      },
     });
 
-    res.json({ message: "Project deleted" });
+    res.json({ message: "Project deleted successfully" });
   } catch (error: any) {
+    console.error("Delete Error:", error);
     Sentry.captureException(error);
     res.status(500).json({ message: error.message });
   }

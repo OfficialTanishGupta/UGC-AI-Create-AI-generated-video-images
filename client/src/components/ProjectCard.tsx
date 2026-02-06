@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from "react-router-dom";
 import type { Project } from "../types";
 import {
@@ -10,6 +11,9 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { GhostButton, PrimaryButton } from "./Buttons";
+import { useAuth } from "@clerk/clerk-react";
+import api from "../configs/axios";
+import toast from "react-hot-toast";
 
 // const ProjectCard = ({
 //   gen,
@@ -32,6 +36,8 @@ const ProjectCard = ({
   setGenerations: React.Dispatch<React.SetStateAction<Project[]>>;
   forCommunity?: boolean;
 }) => {
+  const { getToken } = useAuth();
+
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -40,10 +46,41 @@ const ProjectCard = ({
       "Are you sure, you want to delete this project?",
     );
     if (!confirm) return;
-    console.log(id);
+
+    try {
+      const token = await getToken();
+      const { data } = await api.delete(`/api/project/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setGenerations((generations) =>
+        generations.filter((gen) => gen.id !== id),
+      );
+      toast.success(data.message);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.meesage || error.message);
+      console.log(error);
+    }
   };
   const togglePublish = async (projectId: string) => {
-    console.log(projectId);
+    try {
+      const token = await getToken();
+      const { data } = await api.get(`/api/user/publish/${projectId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setGenerations((generations) =>
+        generations.map((gen) =>
+          gen.id === projectId
+            ? { ...gen, isPublished: data.isPublished }
+            : gen,
+        ),
+      );
+      toast.success(
+        data.isPublished ? "Project published" : "Project unpublished",
+      );
+    } catch (error: any) {
+      toast.error(error?.response?.data?.meesage || error.message);
+      console.log(error);
+    }
   };
 
   return (
@@ -152,6 +189,17 @@ const ProjectCard = ({
                     </a>
                   )}
 
+                  {/* ✅ Add this Publish/Unpublish Toggle */}
+                  {(gen.generatedVideo || gen.generatedImage) && (
+                    <button
+                      onClick={() => togglePublish(gen.id)}
+                      className="w-full flex gap-2 items-center px-4 py-2
+                      hover:bg-black/10 cursor-pointer"
+                    >
+                      <Share2Icon size={14} />
+                      {gen.isPublished ? "Unpublish" : "Publish"}
+                    </button>
+                  )}
                   {(gen.generatedVideo || gen.generatedImage) && (
                     <button
                       onClick={() =>
@@ -226,7 +274,8 @@ const ProjectCard = ({
           {gen.productDescription && (
             <div className="mt-3">
               <p className="text-xs text-gray-400 mb-1">Description</p>
-              <div className="text-sm text-gray-300 bg-white/3 p-2 rounded-md break-words">
+              {/* ✅ Changed break-words to wrap-break-word */}
+              <div className="text-sm text-gray-300 bg-white/3 p-2 rounded-md wrap-break-word">
                 {gen.productDescription}
               </div>
             </div>
@@ -237,20 +286,29 @@ const ProjectCard = ({
               <div className="text-xs text-gray-300">{gen.userPrompt}</div>
             </div>
           )}
-  
+
           {/* buttons */}
           {!forCommunity && (
             <div className="mt-4 grid grid-cols-2 gap-3">
-                  <GhostButton className="text-xs justify-center"
-                  onClick={()=>{navigate(`/result/${gen.id}`); scrollTo(0,0)}}>
-                    View Details
-                    </GhostButton> 
-                    <PrimaryButton className="rounded-md">
-                        {gen.isPublished ? 'Unpublished' : 'Publish'}
-                    </PrimaryButton>
+              <GhostButton // Fixed the typo from 'GhosButton'
+                className="text-xs justify-center"
+                onClick={() => {
+                  navigate(`/result/${gen.id}`);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                View Details
+              </GhostButton>
+
+              {/* ✅ Tie this button to the toggle function too! */}
+              <PrimaryButton
+                className="rounded-md"
+                onClick={() => togglePublish(gen.id)}
+              >
+                {gen.isPublished ? "Unpublish" : "Publish"}
+              </PrimaryButton>
             </div>
           )}
-
         </div>
       </div>
     </div>
