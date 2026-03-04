@@ -1,95 +1,228 @@
-# 🎬 UGC AI — Backend (In Progress)
+🚀 UGC AI — Create AI Generated Images & Videos
 
-This repository contains the **backend architecture** for **UGC AI**, a scalable AI-powered platform for generating images and videos with authentication, credits, and plans.
+UGC AI is a Full-Stack AI SaaS platform that allows users to generate AI-powered images and videos using modern cloud infrastructure and scalable backend architecture.
 
-The backend is being built with **production-grade tools** focusing on performance, security, and scalability.
+The platform includes authentication, credit-based usage, media storage, and AI generation APIs, making it a foundation for building a production-ready AI SaaS product.
 
----
+🌐 Project Demo
 
-## 🚀 Backend Tech Stack
+![Backend Roadmap](./screenshots/model2.png)
 
-- **Node.js + Express**
-- **TypeScript**
-- **Neon (Serverless PostgreSQL)**
-- **Prisma ORM**
-- **Clerk Authentication**
-- **Cloudinary (Media Storage)**
-- **Sentry (Error Tracking)**
-- **Hostinger VPS (Deployment)**
+✨ Features
 
----
+✅ AI Image Generation
+✅ AI Video Generation
+✅ Secure Authentication
+✅ Credit-based usage system
+✅ Media storage & CDN delivery
+✅ Error monitoring
+✅ Scalable cloud database
+✅ Production-ready backend architecture
 
-## 🧱 Backend Architecture Roadmap
+🧠 Tech Stack
+Frontend
 
-Below is the planned backend structure and implementation flow:
+React
+
+TypeScript
+
+TailwindCSS
+
+Backend
+
+Node.js
+
+Express.js
+
+TypeScript
+
+Database
+
+Neon Serverless PostgreSQL
+
+Prisma ORM
+
+Authentication
+
+Clerk Authentication
+
+Media Storage
+
+Cloudinary
+
+Monitoring
+
+Sentry
+
+Deployment
+
+Hostinger VPS
+
+🏗️ System Architecture
+
 
 ![Backend Roadmap](./screenshots/backend-roadmap.png)
 
-### Planned Modules
+The backend architecture is designed to be scalable and modular, enabling efficient handling of user authentication, AI generation pipelines, and media storage.
 
-1. Backend server using **Express & TypeScript**
-2. **Neon Database** (Serverless PostgreSQL)
-3. **Prisma ORM** for database access
-4. **Clerk Authentication & Webhook Controller**
-5. Error tracking using **Sentry**
-6. User Controllers
-7. Image Generation Controller
-8. Video Generation Controller
-9. Media storage using **Cloudinary**
-10. Deployment using **Hostinger VPS**
+⚙️ Backend Modules
 
----
+1️⃣ Express + TypeScript Server
 
-## 🔐 Authentication
+Handles API routing, middleware, and application logic.
 
-- Secure authentication handled by **Clerk**
-- Webhooks to sync users with the database
-- Role & credit-based access control
+2️⃣ Authentication System
 
----
+Authentication is handled by Clerk.
 
-## 🗄️ Database
+Features include:
 
-- **Neon** for scalable PostgreSQL
-- **Prisma ORM** for:
-  - Type-safe queries
-  - Easy migrations
-  - Clean schema management
+Secure login & signup
 
----
+Webhook-based user synchronization
 
-## 📦 Media Storage
+Role & credit-based access
 
-- Images & videos stored securely using **Cloudinary**
-- Optimized delivery with CDN support
+3️⃣ Database Layer
 
----
+Neon Serverless PostgreSQL + Prisma ORM
 
-## 📊 Error Monitoring
+Benefits:
 
-- **Sentry** integrated for:
-  - Runtime error tracking
-  - API crash monitoring
-  - Production debugging
+Type-safe queries
 
----
+Easy schema migrations
 
-## 📌 Current Status
+High scalability
 
-✅ Backend planning completed  
-🚧 Express + TypeScript server setup  
-🚧 Prisma + Neon integration  
-🚧 Auth & generation controllers
+Clean data models
 
----
+4️⃣ AI Generation Controllers
 
-## 👨‍💻 Author
+Controllers handle:
 
-**Tanish Gupta**  
-Full-Stack AI Developer | SaaS Builder
+Image generation requests
 
----
+Video generation requests
 
-## 📜 License
+Credit deduction
+
+Generation history
+
+5️⃣ Media Storage
+
+Generated content is stored using Cloudinary.
+
+Benefits:
+
+CDN delivery
+
+Media optimization
+
+Secure storage
+
+Fast global access
+
+6️⃣ Error Monitoring
+
+Integrated with Sentry to track:
+
+Server crashes
+
+Runtime errors
+
+API failures
+
+Production debugging
+
+```text
+📂 Project Structure
+UGC-AI-Create-AI-generated-video-images
+
+├── backend
+│   ├── controllers
+│   │   ├── image.controller.ts
+│   │   ├── video.controller.ts
+│   │   └── user.controller.ts
+│   │
+│   ├── routes
+│   │   ├── image.routes.ts
+│   │   ├── video.routes.ts
+│   │   └── user.routes.ts
+│   │
+│   ├── prisma
+│   │   └── schema.prisma
+│   │
+│   ├── middleware
+│   │   └── auth.middleware.ts
+│   │
+│   └── server.ts
+│
+├── frontend
+│
+├── screenshots
+│   ├── backend-roadmap.png
+│   ├── dashboard.png
+│   └── generation-page.png
+│
+└── README.md
+```
+
+🖼️ Screenshots
+
+Product 1 which i used:
+![Backend Roadmap](./screenshots/product1.png)
+Model 1 which, I used:
+![Backend Roadmap](./screenshots/generation-result-page.png)
+
+Video Generation
+
+🔐 Authentication Flow
+
+1️⃣ User signs in using Clerk Authentication
+2️⃣ Clerk sends webhook to backend
+3️⃣ Backend stores user in Neon PostgreSQL
+4️⃣ Credits assigned to user
+5️⃣ User can generate AI images/videos
+
+📊 Credit System
+
+Each generation consumes credits.
+
+Example:
+
+Feature	Credits
+Image Generation	4
+Video Generation	5
+
+This allows easy integration of SaaS pricing plans.
+
+🚀 Deployment
+
+The backend is deployed using Hostinger VPS.
+
+Deployment stack:
+
+Node.js server
+
+PM2 process manager
+
+Nginx reverse proxy
+
+
+👨‍💻 Author
+
+Tanish Gupta
+
+AI/ML Developer | Full-Stack Developer | SaaS Builder
+
+GitHub
+https://github.com/OfficialTanishGupta
+
+📜 License
 
 MIT License
+
+⭐ If you like this project
+
+Consider giving the repository a star ⭐ on GitHub.
